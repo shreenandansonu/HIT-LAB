@@ -529,6 +529,7 @@ a {
     text-align: center;
     font-size: small;
     font-style: italic;
+    padding: 10px 0px 20px 0px;
 }
 /* Styles for the three-column list */
 ul.column-list {

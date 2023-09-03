@@ -25,7 +25,7 @@
     <nav>
         <a href="index.html" class="logo_link"><img src="image/Group 15.png" alt="" id="head_logo"></a>
         <div id="links">
-            <a href="https://github.com/shreenandansonu/Hit-Lab-Codes"><i class="fa fa-github"></i></a>
+            <a href="https://github.com/shreenandansonu/HIT-LAB-DATA"><i class="fa fa-github"></i></a>
         </div>
     </nav>
     <!-- Header Template -->
@@ -187,93 +187,146 @@
             </figcaption>
             <h3>Code</h3>
             <h2>Arduino Code</h2>
-            <pre><code class="  cpp" >
-                int led = 11;           // the PWM pin the LED is attached to
-                int brightness = 0;    // how bright the LED is
-                
-                // the setup routine runs once when you press reset:
-                void setup() {
-                  // declare pin 9 to be an output:
-                  pinMode(led, OUTPUT);
-                  Serial.begin(9600);
-                }
-                
-                // the loop routine runs over and over again forever:
-                void loop() {
-                  brightness=Serial.read();
-                  analogWrite(led, brightness);
-                  delay(1000);
-                }
-            </code></pre>
+<pre><code class="  cpp" >
+    // Define the analog pin, the TMP36's Vout pin is connected to
+    #define sensorPin A0
+    
+    void setup() {
+      // Begin serial communication at 9600 baud rate
+      Serial.begin(9600);
+    }
+    
+    void loop() {
+      // Get the voltage reading from the TMP36
+      int reading = analogRead(sensorPin);
+    
+      // Convert that reading into voltage
+      float voltage = reading * (5.0 / 1024.0);
+    
+      // Convert the voltage into the temperature in Celsius
+      float temperatureC = voltage * 100;
+    
+      // Print the temperature in Celsius
+      Serial.println(temperatureC);
+      delay(1000); // wait a 10 miliseconds between readings
+    }
+</code></pre>
 
             <h2>Python Code (Live Temperature)</h2>
-            <pre><code class="  python">
-            import time  
-            # pip install pyserial
-            import serial 
-            import serial.tools.list_ports
-            # Get a list of available serial ports
-            available_ports = list(serial.tools.list_ports.comports())
-            # once obtaining available port
-            for port in available_ports:
-                # we store the data into variable
-                # baud rate should match the serial baudrate ie. 9600
-                ard_data=serial.Serial(port.device,9600)
-                # waiting 1 Sec for the communication to start
-                time.sleep(1)
-                while(ard_data.inWaiting()==0):
-                    pass
-                data=ard_data.readline()
-                data=str(data,'utf-8')
-                data=data.strip('\r\n')
-                data=int(data)
-                print(data)
-            </code></pre>
+<pre><code class="  python">
+    import time  
+    # pip install pyserial
+    import serial 
+    import serial.tools.list_ports
+    # Get a list of available serial ports
+    available_ports = list(serial.tools.list_ports.comports())
+    # once obtaining available port
+    for port in available_ports:
+        # we store the data into variable
+        # baud rate should match the serial baudrate ie. 9600
+        ard_data=serial.Serial(port.device,9600)
+        # waiting 1 Sec for the communication to start
+        time.sleep(1)
+        while True:
+            while(ard_data.inWaiting()==0):
+                pass
+            data=ard_data.readline()
+            data=str(data,'utf-8')
+            data=data.strip('\r\n')
+            data=float(data)
+            print(data)
+</code></pre>
 
             <h2>Python Code (Record Temperature)</h2>
-            <pre><code code class="  python">
-            import time
-            import serial
-            import pandas as pd
-            import numpy as np
-            import serial.tools.list_ports
-            name=input("Name of the Patient:- ")
-            # Get a list of available serial ports
-            available_ports = list(serial.tools.list_ports.comports())
-            #initializing a numpy array to store 10000 temperature data points
-            data_array=np.zeros(10000)
-            t=0
-            # begins the counter
-            t1=time.time()
-            # once obtaining available port
-            for port in available_ports:
-                # we store the data into variable
-                # baud rate should match the serial baudrate ie. 9600
-                ard_data=serial.Serial(port.device,9600)
-                time.sleep(1)
-                #seting the loop for 10000 times
-                while t&lt10000:
-                    while(ard_data.inWaiting()==0):
-                        pass
-                    #processing the data from serial port and converting it to integer
-                    data=ard_data.readline()
-                    data=str(data,'utf-8')
-                    data=data.strip('\r\n')
-                    data=int(data)
-                    print(data)
-                    data_array[t]=data
-                    t=t+1
-                # ending the counter
-                t2=time.time()
-                print(t2-t1)    
-                print("Collected")
-                print(data_array)
-                # making a data frame to hold the numpy data
-                df = pd.DataFrame(data_array)
-                # converting the dataframe to csv file
-                df.to_csv(name +'.csv')
-                print('Thank You')
-            </code></pre>
+<pre><code code class="  python">
+    import time
+    import serial
+    import pandas as pd
+    import numpy as np
+    import serial.tools.list_ports
+    name=input("Name of the Patient:- ")
+    # Get a list of available serial ports
+    available_ports = list(serial.tools.list_ports.comports())
+    #initializing a numpy array to store 10000 temperature data points
+    data_array=np.zeros(10)
+    t=0
+    # begins the counter
+    t1=time.time()
+    # once obtaining available port
+    for port in available_ports:
+        # we store the data into variable
+        # baud rate should match the serial baudrate ie. 9600
+        ard_data=serial.Serial(port.device,9600)
+        time.sleep(1)
+        #seting the loop for 10 times
+        while t&lt10:
+            while(ard_data.inWaiting()==0):
+                pass
+            #processing the data from serial port and converting it to integer
+            data=ard_data.readline()
+            data=str(data,'utf-8')
+            data=data.strip('\r\n')
+            data=float(data)
+            print(data)
+            data_array[t]=data
+            t=t+1
+        # ending the counter
+        t2=time.time()
+        print(t2-t1)    
+        print("Collected")
+        print(data_array)
+        # making a data frame to hold the numpy data
+        df = pd.DataFrame(data_array)
+        # converting the dataframe to csv file
+        df.to_csv(name +'.csv')
+        print('Thank You')
+</code></pre>
+<h3>Observation</h3>
+<ul>
+    <li>Using the python code for <b>live data</b>, we obtained the live temperature of the patient.</li>
+    <li>Using the python code for <b>storing data</b>, we recorded the live temperature for 10 Seconds.</li>
+    <li>Using the Same code, we can store the data of any desired amount of time using the simple calculation given below.</li>
+    <li>
+        <span><b>datapoints =</b></span>
+        <span>(time in minutes &times; 60 &times; time delay in milliseconds)</span>
+        <span>/ 1000</span>
+    </li>
+</ul>
+<img src="image/iot/aide.png" oncontextmenu="return false" alt="">
+
+<figcaption>
+    Arduino code being uploaded to the arduino compatible board.
+</figcaption>
+<img src="image/iot/live1.png" oncontextmenu="return false" alt="">
+<img src="image/iot/live2.png" oncontextmenu="return false" alt="">
+
+<figcaption>
+    Running the live temperature code and obtaining the temperature in the Command line interface
+</figcaption>
+
+<img src="image/iot/store1.png" oncontextmenu="return false" alt="">
+<img src="image/iot/store2.png" oncontextmenu="return false" alt="">
+
+<figcaption>
+    Running the storing temperature code and obtaining the temperature in the CSV file format
+</figcaption>
+
+<h3>Conclusion</h3>
+<ul>
+<li>After doing the experiment we can use sensor to obtain data and use microcontroller to send the data to the processing unit for storing, processing, and visualising the data.</li>
+<li>We can use different sensors to obtain various data regarding the patient in medical use of this.</li>
+<li>The data we stored in CSV format can be visualised using Excel or Google Sheet </li>
+<li>We can use different other modules of python to visualize the live data.</li>
+</ul><h3>Discussion</h3>
+<ul>
+<li>This simple demonstration of IoT in Healthcare monitoring can be extended to making apps and storing the data on cloud and processing it.</li>
+<li>In the further experiments we will make mobile apps and display and process data obtained in the cloud.</li>
+<li>We can use other important sensors like <b>Heart Rate Sensor</b>, <b>SPO2 Sensor</b>, etc. to properly moniter the patient.</li>
+<li>
+    Here with data comes proper data handeling as medical data can be missused.
+</li>
+</ul>
+
 
 
             <!-- Your Content Goes Here -->
@@ -298,7 +351,7 @@
                 <h3>NIT ROURKELA</h3>
             </div>
             <div id="socials">
-                <a href="https://github.com/shreenandansonu/Hit-Lab-Codes"><i class="fa fa-github"></i></a>
+                <a href="https://github.com/shreenandansonu/HIT-LAB-DATA"><i class="fa fa-github"></i></a>
                 <a href="https://www.youtube.com/channel/UCnMVy0uZm6HjSJ_QW491nxA"><i
                         class="fa fa-youtube-play"></i></a>
             </div>

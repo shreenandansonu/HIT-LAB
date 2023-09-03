@@ -7,6 +7,16 @@
     <title>HIT-LAB-NITKRL</title>
     <link rel="shortcut icon" href="image/Group 14.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <!-- Include the highlight.js stylesheet for your desired theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/github-dark.min.css">
+    <!-- Include the highlight.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <!-- Initialize highlight.js -->
+    <script>
+    hljs.initHighlightingOnLoad();
+    hljs.lineNumbersOnLoad();
+    </script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -15,7 +25,7 @@
     <nav>
         <a href="index.html" class="logo_link"><img src="image/Group 15.png" alt="" id="head_logo"></a>
         <div id="links">
-            <a href="https://github.com/shreenandansonu/Hit-Lab-Codes"><i class="fa fa-github"></i></a>
+            <a href="https://github.com/shreenandansonu/HIT-LAB-DATA"><i class="fa fa-github"></i></a>
         </div>
     </nav>
     <!-- Header Template -->
@@ -35,24 +45,297 @@
         <div id="middle" class="sections">
             <!-- Your Content Goes Here -->
             <h1>IoT for healthcare monitoring</h1>
+
             <h2>"IoT for Healthcare Monitoring is a transformative solution that melds state-of-the-art hardware and
                 software. This innovative approach leverages the power of Arduino and Raspberry Pi, versatile
                 microcontroller platforms, along with Bluetooth, Serial, and HTTPS protocols to enable seamless data
                 exchange."</h2>
+            <img src="image/iot/thumbnail.png" oncontextmenu="return false" alt="">
             <hr color="#DDA15E">
+            <h3>Requirements</h3>
+            <ul class="column-list">
+                <li>
+                    <h3>Apparatus:</h3>
+                    <ul class="category-list">
+                        <li>Arduino compatible microcontroller</li>
+                        <li>HC05 Bluetooth Module</li>
+                        <li>TMP36 IC</li>
+                        <li>USB 2 wire</li>
+                        <li>Laptop/PC/Raspberry Pi</li>
+                        <li>Jumper Wires</li>
+                        <li>Bread Board</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Software:</h3>
+                    <ul class="category-list">
+                        <li>Arduino IDE</li>
+                        <li>Python</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Modules:</h3>
+                    <ul class="category-list">
+                        <li>Pandas Module</li>
+                        <li>NumPy Module</li>
+                        <li>Serial Module</li>
+                        <li>Time Module</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3>Theory</h3>
+
+            <p><strong><em>Internet of Things (IoT):</em></strong> - IoT refers to a network of interconnected physical
+                objects or "things" embedded with sensors, software, and other technologies that enable them to collect,
+                exchange, and transmit data over the internet. (<em><strong>Internet here always does not mean the
+                        web</strong></em>; it simply means the interconnected network of things.) The primary goal of
+                IoT is to enable these objects to communicate, interact, and provide value by sharing information and
+                performing tasks autonomously or with minimal human intervention.</p>
+
+
             <img src="image/iot/Iot_archi.png" oncontextmenu="return false" alt="">
 
             <figcaption>
                 Block diagram of IoT system and it's peripherals
             </figcaption>
 
+            <h3>IoT Components</h3>
+            <ul>
+                <li><strong>Sensor:</strong> Sensors are devices that gather data from the physical world. They detect
+                    changes in their environment and convert these changes into electrical signals. E.g.,
+                    <em>Temperature sensors</em>, <em>motion detectors</em>, <em>heart rate monitors</em>.
+                </li>
+                <li><strong>Actuator:</strong> Actuators are devices that take signals from the IoT system and perform
+                    physical actions in the real world based on those signals. E.g., <em>Motors</em>, <em>servos</em>,
+                    <em>solenoids</em>, and <em>relays</em>.
+                </li>
+                <li><strong>Controller:</strong> Controllers, often microcontrollers or microprocessors, are the
+                    "brains" of IoT devices. They process data, execute algorithms, and control the behavior of the
+                    device. E.g., <em>Arduino boards</em>, <em>Raspberry Pi</em>, <em>ESP8266</em>.</li>
+                <li><strong>Communication Gateway: </strong>Gateways facilitate communication between IoT devices and
+                    the internet or other devices. They often bridge different communication protocols. E.g., <em>IoT
+                        routers</em>, <em>Serial COM</em>, <em>Bluetooth</em>.</li>
+                <li><strong>Data Storage:</strong> Data storage components store the data collected by sensors for later
+                    analysis or retrieval. This data can be stored locally or in the cloud. E.g., <em>Local
+                        databases</em>, <em>cloud storage services</em>.</li>
+                <li><strong>Processor:</strong> Processors analyze the data collected by sensors, making sense of it and
+                    often making decisions or predictions based on algorithms. E.g., <em>CPUs</em>, <em>GPUs</em>,
+                    <em>specialized AI processors</em>.
+                </li>
+                <li><strong>User Input:</strong> User input refers to data or commands provided by users to the IoT
+                    system. This input can configure settings or trigger specific actions. E.g., <em>Buttons</em>,
+                    <em>touchscreens</em>, <em>voice commands</em>.
+                </li>
+                <li><strong>User Output:</strong> User output components provide information or feedback from the IoT
+                    system to users. This can include notifications, displays, or auditory signals. E.g., <em>LEDs</em>,
+                    <em>displays</em>, <em>speakers</em>.
+                </li>
+            </ul>
+            <h3><strong>Bluetooth:</strong></h3>
+            <p><strong>Bluetooth</strong> is a wireless communication technology that allows electronic devices to
+                exchange data over short distances. It was developed to replace traditional wired connections, such as
+                USB cables, for connecting devices like smartphones, headphones, keyboards, and more. Bluetooth
+                technology uses radio waves in the <strong>2.4 GHz ISM (Industrial, Scientific, and Medical)
+                    band</strong> to establish connections between devices. It provides a <strong>communication
+                    protocol</strong> to commute between the controller and processor.</p>
+
+            <h3><strong>Arduino:</strong></h3>
+            <p><strong>Arduino</strong> is an open-source hardware and software platform designed for building and
+                prototyping a wide range of electronic projects. It provides a simple and accessible way for
+                individuals, including hobbyists, students, and professionals, to create interactive and programmable
+                electronic devices. The core components of the Arduino platform include <strong><em></em>Arduino Boards,
+                    Arduino Integrated Development Environment (IDE),</em></strong> etc. It is a controller which reads
+                data from the sensor and converts it to digital data and sends it to the processing unit.</p>
+
+            <h3>Procedure:</h3>
+            <ul>
+                <li><strong>Connect the TMP36 to the Arduino</strong> as shown below and connect the Vout Pin of the IC
+                    to the A0 pin.</li>
+                <li><strong>Connect the Bluetooth Module HC-05 to the Arduino</strong> as shown in the diagram below.
+                    Make sure the TX and RX pins of the module are connected to the RX and TX pins of Arduino
+                    respectively.</li>
+                <li><strong>Power up the Arduino</strong> using the USB 2.0 cable and use a laptop/PC/Raspberry Pi as
+                    per your convenience to first code the Arduino-compatible board and use it as a storage, processing,
+                    and visualizing device.</li>
+                <li><strong>Now open the Arduino IDE</strong> and code for obtaining the data from the sensor.</li>
+                <li><strong>Now we will use the Serial COM port</strong> to push the data from the microcontroller to
+                    the laptop/PC/Raspberry Pi.</li>
+                <li><strong>Here we have 2 options to send data to the processor</strong>:
+                    <ul>
+                        <li>Wired USB</li>
+                        <li>Wireless Bluetooth</li>
+                    </ul>
+                </li>
+                <li><strong>Now open Code Editor</strong> and write a python code to obtain data from the serial port
+                    and display it on the CLI (command-line interface) and then store it as a CSV.</li>
+                <li><strong>Now to visualize the data</strong>, we will use Google Spreadsheet or MS Excel.</li>
+                <li>There can be variations in the processes from here depending on <strong>showing or storing the data
+                        and usage of the available communication medium</strong>.</li>
+                <li>Once the code is written on the Arduino-compatible board, <strong>we can unplug the board from the
+                        processing device</strong> and use another power source to run the board in case of Bluetooth
+                    mode of communication.</li>
+                <li>
+                    <span><b>datapoints =</b></span>
+                    <span>(time in minutes &times; 60 &times; time delay in milliseconds)</span>
+                    <span>/ 1000</span>
+                </li>
+            </ul>
+            <img src="image/iot/arduino.png" oncontextmenu="return false" alt="">
+
+            <figcaption>
+                Schematic showing connection of the components to the Arduino compatible board.
+            </figcaption>
+            <h3>Code</h3>
+            <h2>Arduino Code</h2>
+<pre><code class="  cpp" >
+    // Define the analog pin, the TMP36's Vout pin is connected to
+    #define sensorPin A0
+    
+    void setup() {
+      // Begin serial communication at 9600 baud rate
+      Serial.begin(9600);
+    }
+    
+    void loop() {
+      // Get the voltage reading from the TMP36
+      int reading = analogRead(sensorPin);
+    
+      // Convert that reading into voltage
+      float voltage = reading * (5.0 / 1024.0);
+    
+      // Convert the voltage into the temperature in Celsius
+      float temperatureC = voltage * 100;
+    
+      // Print the temperature in Celsius
+      Serial.println(temperatureC);
+      delay(1000); // wait a 10 miliseconds between readings
+    }
+</code></pre>
+
+            <h2>Python Code (Live Temperature)</h2>
+<pre><code class="  python">
+    import time  
+    # pip install pyserial
+    import serial 
+    import serial.tools.list_ports
+    # Get a list of available serial ports
+    available_ports = list(serial.tools.list_ports.comports())
+    # once obtaining available port
+    for port in available_ports:
+        # we store the data into variable
+        # baud rate should match the serial baudrate ie. 9600
+        ard_data=serial.Serial(port.device,9600)
+        # waiting 1 Sec for the communication to start
+        time.sleep(1)
+        while True:
+            while(ard_data.inWaiting()==0):
+                pass
+            data=ard_data.readline()
+            data=str(data,'utf-8')
+            data=data.strip('\r\n')
+            data=float(data)
+            print(data)
+</code></pre>
+
+            <h2>Python Code (Record Temperature)</h2>
+<pre><code code class="  python">
+    import time
+    import serial
+    import pandas as pd
+    import numpy as np
+    import serial.tools.list_ports
+    name=input("Name of the Patient:- ")
+    # Get a list of available serial ports
+    available_ports = list(serial.tools.list_ports.comports())
+    #initializing a numpy array to store 10000 temperature data points
+    data_array=np.zeros(10)
+    t=0
+    # begins the counter
+    t1=time.time()
+    # once obtaining available port
+    for port in available_ports:
+        # we store the data into variable
+        # baud rate should match the serial baudrate ie. 9600
+        ard_data=serial.Serial(port.device,9600)
+        time.sleep(1)
+        #seting the loop for 10 times
+        while t&lt10:
+            while(ard_data.inWaiting()==0):
+                pass
+            #processing the data from serial port and converting it to integer
+            data=ard_data.readline()
+            data=str(data,'utf-8')
+            data=data.strip('\r\n')
+            data=float(data)
+            print(data)
+            data_array[t]=data
+            t=t+1
+        # ending the counter
+        t2=time.time()
+        print(t2-t1)    
+        print("Collected")
+        print(data_array)
+        # making a data frame to hold the numpy data
+        df = pd.DataFrame(data_array)
+        # converting the dataframe to csv file
+        df.to_csv(name +'.csv')
+        print('Thank You')
+</code></pre>
+<h3>Observation</h3>
+<ul>
+    <li>Using the python code for <b>live data</b>, we obtained the live temperature of the patient.</li>
+    <li>Using the python code for <b>storing data</b>, we recorded the live temperature for 10 Seconds.</li>
+    <li>Using the Same code, we can store the data of any desired amount of time using the simple calculation given below.</li>
+    <li>
+        <span><b>datapoints =</b></span>
+        <span>(time in minutes &times; 60 &times; time delay in milliseconds)</span>
+        <span>/ 1000</span>
+    </li>
+</ul>
+<img src="image/iot/aide.png" oncontextmenu="return false" alt="">
+
+<figcaption>
+    Arduino code being uploaded to the arduino comapatible board.
+</figcaption>
+<img src="image/iot/live1.png" oncontextmenu="return false" alt="">
+<img src="image/iot/live2.png" oncontextmenu="return false" alt="">
+
+<figcaption>
+    Running the live temperature code and obtaining the temperature in the Command line interface
+</figcaption>
+
+<img src="image/iot/store1.png" oncontextmenu="return false" alt="">
+<img src="image/iot/store2.png" oncontextmenu="return false" alt="">
+
+<figcaption>
+    Running the storing temperature code and obtaining the temperature in the CSV file format
+</figcaption>
+
+<h3>Conclusion</h3>
+<ul>
+<li>After doing the experiment we can use sensor to obtain data and use microcontroller to send the data to the processing unit for storing, processing, and visualising the data.</li>
+<li>We can use different sensors to obtain various data regarding the patient in medical use of this.</li>
+<li>The data we stored in CSV format can be visualised using Excel or Google Sheet </li>
+<li>We can use different other modules of python to visualize the live data.</li>
+</ul><h3>Discussion</h3>
+<ul>
+<li>This simple demonstration of IoT in Healthcare monitoring can be extended to making apps and storing the data on cloud and processing it.</li>
+<li>In the further experiments we will make mobile apps and display and process data obtained in the cloud.</li>
+<li>We can use other important sensors like <b>Heart Rate Sensor</b>, <b>SPO2 Sensor</b>, etc. to properly moniter the patient.</li>
+<li>
+    Here with data comes proper data handeling as medical data can be missused.
+</li>
+</ul>
+
+
+
             <!-- Your Content Goes Here -->
         </div>
         <div id="right" class="sections">
             <div id="materials">
-                <a href="smth.pdf">Download PDF</a>
-                <a href="smth.gihub.com">Code Repo</a>
-                <a href="sk.com">APK Download</a>
+                <a href="https://github.com/shreenandansonu/HIT-LAB-DATA/blob/main/exp1/exp1.pdf" download="">Download
+                    PDF</a>
+                <a href="https://github.com/shreenandansonu/HIT-LAB-DATA/tree/main/exp1/codes">Code Repository</a>
             </div>
         </div>
 
@@ -68,7 +351,7 @@
                 <h3>NIT ROURKELA</h3>
             </div>
             <div id="socials">
-                <a href="https://github.com/shreenandansonu/Hit-Lab-Codes"><i class="fa fa-github"></i></a>
+                <a href="https://github.com/shreenandansonu/HIT-LAB-DATA"><i class="fa fa-github"></i></a>
                 <a href="https://www.youtube.com/channel/UCnMVy0uZm6HjSJ_QW491nxA"><i
                         class="fa fa-youtube-play"></i></a>
             </div>
