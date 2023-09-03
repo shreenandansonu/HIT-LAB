@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <style>
+        nav {
+            background-color: #DDA15E;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        label.logo {
+            font-size: 24px;
+            cursor: pointer;
+            color: black;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        ul li {
+            margin-right: 20px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        ul li a:hover {
+            text-decoration: none;
+        }
+
+        .checkbtn {
+            font-size: 30px;
+            cursor: pointer;
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        #check {
+            display: none;
+        }
+
+        /* Show options when hovering over the "fa-bars" icon */
+        label.checkbtn:hover+ul,
+        ul:hover,
+        #check:checked~ul {
+            display: flex;
+        }
+
+        ul li a:hover {
+            text-decoration: none;
+        }
+
+        /* Add this CSS to change the list item color on hover */
+        ul li:hover {
+            background-color: #79756d;
+            /* Change the color as desired */
+            transition: 0.3s;
+        
+        }
+
+
+        /* Responsive styles */
+        @media (max-width: 800px) {
+            label.logo {
+                font-size: 18px;
+            }
+
+            ul {
+                flex-direction: column;
+                align-items: center;
+                position: absolute;
+                top: 60px;
+                left: -100%;
+                background-color: #413a3a;
+                width: 100%;
+                transition: 0.3s;
+            }
+
+            #check:checked+label.logo+ul,
+            #check:checked~ul {
+                left: 0;
+            }
+
+            ul li {
+                margin: 10px 0;
+            }
+
+            .checkbtn {
+                display: block;
+                margin-right: 15px;
+                color: black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fa fa-bars"></i>
+        </label>
+        <label class="logo">HIT-LAB</label>
+        <ul>
+            <li><a class="active" href="#">HOME</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Experiments</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Feedback</a></li>
+        </ul>
+    </nav>
+</body>
+
+</html>
